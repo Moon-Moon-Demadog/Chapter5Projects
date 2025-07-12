@@ -1,48 +1,33 @@
-// This program will display a bar graph with populaiton data.
+//This program will play a guessing game with the user
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <iomanip>
+#include <random>
 using namespace std;
 
-int main ()
+int main () 
 {
-  ifstream inputFile;
-  string town, fileName;
-  int  year = 1900;
-  const int StartYear= 1900, EndYear= 2000, Factor = 1000, increment = 20;
-  cout<< "Let's look at a bar grapgh of population growth."<< endl;
-  cout<< "First name your town:" << endl;
-  cout<< "\t  " << endl;
-  cin>> town;
-  cout<< "Let's access data for " << town << "."<< endl;
-  cout<< "What is the file name , complete with extensions :  " << endl;
-  cin>> fileName;
-  inputFile.open(fileName);
+  const int MIN = 0;
+  const int MAX = 100;
+  int number;
+  int counter = 0;
+  random_device engine;
+  uniform_int_distribution<int>RandomValue(MIN,MAX);
+  random = RandomValue(engine);
   
-  
-  if (inputFile.fail())
-  {
-    cout<< " Error opening file." << endl;
-    return 1;
-  }
-  int population= 0;
-  int num = population/Factor;
-  cout<< setw (4) << town << " population growth:" << endl;
-  cout<< "YEAR \t\t Population :" << endl;
-
-
-  while (inputFile>> population)
-  {
-    if (year >= StartYear && (year - StartYear) % increment == 0 && year>= EndYear) {
-      int year = 1900 + increment;
-      cout<< year << ": \t\t";
-     for (int i = 0; i < num; ++i)
-       {
-         cout<< "*";
-       }
+  cout<< "Let's play a game!!"<< endl;
+  cout<< " Guess the random number I'm thinking:"<< endl;
+  cout<< "\t";
+  cin>> number;
+  while (number > random || number < random)
+    {
+      if (number > random)
+      {
+        cout<< "Too high, try agian!";
+      } else if ( number < random) {
+        cout<< "Too low. try again!";
+        counter++;
+      }   
+    } for (number = random) {
+    cout<< "Great job!! It only took you " << counter <<" guesses."<< endl;
     }
-    cout<< endl;
-  }
-  
+  return 0;
 }
