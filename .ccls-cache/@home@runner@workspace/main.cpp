@@ -11,23 +11,31 @@ int main ()
   int counter = 0;
   random_device engine;
   uniform_int_distribution<int>RandomValue(MIN,MAX);
-  random = RandomValue(engine);
+  int random = RandomValue(engine);
   
   cout<< "Let's play a game!!"<< endl;
-  cout<< " Guess the random number I'm thinking:"<< endl;
-  cout<< "\t";
+  cout<< "\n";
+  cout<<"Guess the random number I'm thinking:"<< endl;
+  cout<< "    "<<endl;
+  cout<< endl;
   cin>> number;
-  while (number > random || number < random)
+  while (number != random)
     {
       if (number > random)
       {
-        cout<< "Too high, try agian!";
-      } else if ( number < random) {
-        cout<< "Too low. try again!";
-        counter++;
+        cout<< "Too high, try again!"<< endl;
+      }
+      else if ( number < random) 
+      {
+        cout<< "Too low. try again!"<< endl;
       }   
-    } for (number = random) {
-    cout<< "Great job!! It only took you " << counter <<" guesses."<< endl;
+      cout<< "\t";
+      cin>> number;
+      counter++;
     }
+    
+    cout<< "Great job!! It only took you " << counter;
+    cout<< " guesses."<< endl;
+    
   return 0;
 }
